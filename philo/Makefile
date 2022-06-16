@@ -6,7 +6,7 @@
 #    By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/13 17:51:28 by lmaurin-          #+#    #+#              #
-#    Updated: 2022/06/15 15:39:17 by lmaurin-         ###   ########.fr        #
+#    Updated: 2022/06/16 12:11:16 by lmaurin-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,9 @@ HEADER	=	philosophers.h
 OBJ		=	$(SRC:.c=.o)
 CC		=	gcc
 CCFLAGS	=	-Wall -Wextra -Werror -c
-SRC		=	ft_atoi.c main.c
+SRC		=	./utils/ft_atoi.c ./utils/utils.c ./utils/parsing.c main.c \
+			./srcs/philo.c
+			
 
 all: $(NAME)
 
@@ -27,8 +29,10 @@ $(NAME): $(OBJ)
 
 clean:
 	@/bin/rm -f *.o rm *.a
-	
-fclean:
+	@/bin/rm -f ./srcs/*.o rm ./srcs/*.a
+	@/bin/rm -f ./utils/*.o rm ./utils/*.a
+
+fclean: clean
 	@/bin/rm -f $(NAME)
 
 re: fclean all

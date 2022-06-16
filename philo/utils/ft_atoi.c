@@ -6,11 +6,11 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 15:36:30 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/06/15 15:36:56 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/06/15 17:03:06 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "../philosophers.h"
 #include <limits.h>
 
 static int	ft_isdigit(int c)

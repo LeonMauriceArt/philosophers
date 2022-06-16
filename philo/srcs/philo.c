@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/15 15:53:23 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/06/15 15:55:57 by lmaurin-         ###   ########.fr       */
+/*   Created: 2022/06/15 17:31:51 by lmaurin-          #+#    #+#             */
+/*   Updated: 2022/06/16 12:10:36 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "../philosophers.h"
 
-int	ft_strlen(char *str)
+void	philo_loop(t_args *args)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-void	error_msg(char *msg)
-{
-	write(1, &msg, ft_strlen(msg));
-	exit (0);
+	while (1)
+	{
+		
+	}
 }

@@ -1,24 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/13 18:47:33 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/06/16 12:10:46 by lmaurin-         ###   ########.fr       */
+/*   Created: 2022/06/15 15:53:23 by lmaurin-          #+#    #+#             */
+/*   Updated: 2022/06/15 17:23:17 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "../philosophers.h"
 
-int	main(int ac, char *av[])
+bool	has_alpha(char *str)
 {
-	t_args	args;
+	int	i;
 
-	if (ac < 5 || ac > 6)
-		return (0);
-	args = parsing(ac, av);
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] >= 48 && str[i] <= 57)
+			i++;
+		else
+			return (true);
+	}
+	return (false);
+}
 
-	return (0);
+int	ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+void	error_msg(char *msg)
+{
+	write(1, msg, ft_strlen(msg));
+	exit (0);
 }

@@ -1,0 +1,9 @@
+- initier un tableau de philosophers (*philo)
+- creer aussi un tableau de mutex (fourchettes)
+- dans la struct de ces philo, mettre 2 pointeurs vers des mutex (fourchette gauche et droite)
+une fois que tout est bien setup :
+- initier chaque philo dans un thread via une boucle
+- gerer dans les threads les actions, mutex locks et sleep / think
+- gerer les logs
+- gerer la mort d'un philo
+- plein d'autres dingueries...
