@@ -6,7 +6,7 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 15:53:23 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/06/15 17:23:17 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/06/25 11:07:02 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-void	error_msg(char *msg)
+int	error_msg(char *msg)
 {
 	write(1, msg, ft_strlen(msg));
-	exit (0);
+	return (1);
 }
