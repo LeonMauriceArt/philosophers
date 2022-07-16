@@ -6,7 +6,7 @@
 #    By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/13 17:51:28 by lmaurin-          #+#    #+#              #
-#    Updated: 2022/06/28 16:28:46 by lmaurin-         ###   ########.fr        #
+#    Updated: 2022/06/29 16:12:01 by lmaurin-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,9 @@ HEADER	=	philosophers.h
 OBJ		=	$(SRC:.c=.o)
 CC		=	gcc
 CCFLAGS	=	-Wall -Wextra -Werror -c
-SRC		=	./utils/ft_atoi.c ./utils/utils.c ./utils/parsing.c main.c \
-			./srcs/philo.c ./srcs/init_philos.c ./utils/debug.c
+SRC		=	./utils/ft_atoi.c ./utils/utils.c ./srcs/parsing.c main.c \
+			./srcs/philo_loop.c ./srcs/init_philos.c ./utils/debug.c \
+			./srcs/thread_manager.c
 			
 
 all: $(NAME)

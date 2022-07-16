@@ -6,7 +6,7 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 17:49:45 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/06/28 16:28:36 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/06/29 18:43:04 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,11 @@ int				error_msg(char *msg);
 t_args			parsing(int ac, char *av[]);
 
 //debug functions
-void	display_philo_infos(t_philosopher *philos);
+void			display_philo_infos(t_philosopher *philos);
 
 //main functions
-t_philosopher	*init_philos(t_args *args, pthread_mutex_t *forks);
-void			*philo_loop(t_philosopher philo);
+t_philosopher	*init_philos(t_args *args);
+void			*philo_loop(void *p);
+void			init_threads(t_args *args, t_philosopher *philos);
 
 #endif

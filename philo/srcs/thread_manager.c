@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.c                                            :+:      :+:    :+:   */
+/*   thread_manager.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/28 16:23:11 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/06/29 18:51:13 by lmaurin-         ###   ########.fr       */
+/*   Created: 2022/06/29 16:06:57 by lmaurin-          #+#    #+#             */
+/*   Updated: 2022/06/29 17:38:12 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
-void	display_philo_infos(t_philosopher *philos)
+void	init_threads(t_args *args, t_philosopher *philos)
 {
-	int i = 0;
+	int	i;
 
-	while (philos[i].id != -1)
+	i = 0;
+	while (i < args->philo_nb)
 	{
-		printf("----------\n");
-		printf("Philo ID : %d\n", philos[i].id);
-		printf("Has eaten : %d\n", philos[i].has_eaten);
-		printf("Is sleeping : %d\n", philos[i].is_sleeping);
-		printf("----------\n");
+		pthread_create(&philos[i].thread, NULL, (void *)philo_loop, &philos[i]);
 		i++;
+		usleep(200);
 	}
 	return ;
 }
