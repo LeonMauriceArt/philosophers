@@ -6,7 +6,7 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 17:49:45 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/07/18 16:28:12 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/07/18 19:14:38 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 typedef struct s_rules
 {
 	bool			program_run;
+	size_t			time_elapsed;
 	pthread_mutex_t	msg_display;
 }	t_rules;
 
@@ -61,9 +62,18 @@ t_args			parsing(int ac, char *av[]);
 void			display_philo_infos(t_philo *philos);
 
 //main functions
-t_philosopher	*init_philos(t_args *args, t_rules *rules);
+t_philo			*init_philos(t_args *args, t_rules *rules);
 void			*philo_loop(void *p);
 void			init_threads(t_args *args, t_philo *philos);
 void			close_threads(t_args *args, t_philo *philos);
+size_t			get_timestamp(void);
+void			my_usleep(int time);
+
+//logs
+void			log_fork(int timeMs, int philoId);
+void			log_eating(int timeMs, int philoId);
+void			log_sleeping(int timeMs, int philoId);
+void			log_thinking(int timeMs, int philoId);
+void			log_die(int timeMs, int philoId);
 
 #endif

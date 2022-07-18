@@ -6,7 +6,7 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 18:47:33 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/07/18 17:50:33 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/07/18 19:21:17 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 void	init_rules(t_rules *rules)
 {
 	rules->program_run = true;
+	rules->time_elapsed = 0;
 	pthread_mutex_init(&rules->msg_display, NULL);
 	return ;
 }
@@ -39,7 +40,7 @@ int	main(int ac, char *av[])
 	{
 		if (rules.program_run == false)
 		{
-			close_threads(&args, philos);
+			// close_threads(&args, philos);
 			return (0);
 		}
 	}
