@@ -6,11 +6,13 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:54:07 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/07/16 15:58:54 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/07/18 17:46:28 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
+
+//a function for each log display
 
 void	log_fork(int timeMs, int philoId)
 {

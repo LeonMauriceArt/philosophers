@@ -6,13 +6,14 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 16:06:57 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/06/29 17:38:12 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/07/18 17:45:53 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
-void	init_threads(t_args *args, t_philosopher *philos)
+//initiates each philo thread
+void	init_threads(t_args *args, t_philo *philos)
 {
 	int	i;
 
@@ -24,4 +25,10 @@ void	init_threads(t_args *args, t_philosopher *philos)
 		usleep(200);
 	}
 	return ;
+}
+
+//end philo threads in case of end of program
+void	close_threads(t_args *args, t_philo *philos)
+{
+	
 }

@@ -6,12 +6,13 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 16:21:31 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/07/16 16:04:40 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/07/18 17:50:07 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
+//initiate all forks mutexes
 pthread_mutex_t	*init_forks(t_args *args)
 {
 	int				i;
@@ -33,7 +34,8 @@ pthread_mutex_t	*init_forks(t_args *args)
 	return (mutex_list);
 }
 
-void	assign_forks(t_philosopher *philos, pthread_mutex_t *forks, t_args *arg)
+//assign the forks to each philosopher
+void	assign_forks(t_philo *philos, pthread_mutex_t *forks, t_args *arg)
 {
 	int	i;
 
@@ -57,14 +59,32 @@ void	assign_forks(t_philosopher *philos, pthread_mutex_t *forks, t_args *arg)
 	return ;
 }
 
-t_philosopher	*init_philos(t_args *args)
+//initiate a philosopher struct
+void	init_struct(t_philo *philos, t_args *args, t_rules *rules)
 {
-	int				i;
-	t_philosopher	*philos;
-	pthread_mutex_t	*forks;
+	int	i;
 
 	i = 0;
-	philos = malloc(args->philo_nb * sizeof(t_philosopher));
+	while (i < args->philo_nb)
+	{
+		philos[i].id = i + 1;
+		philos[i].times_has_eaten = 0;
+		philos[i].has_eaten = false;
+		philos[i].is_sleeping = false;
+		philos[i].rules = rules;
+		i++;
+	}
+	philos[args->philo_nb].id = -1;
+	return ;
+}
+
+//initiate all philosophers and assign them forks
+t_philo	*init_philos(t_args *args, t_rules *rules)
+{
+	t_philo			*philos;
+	pthread_mutex_t	*forks;
+
+	philos = malloc(args->philo_nb * sizeof(t_philo));
 	forks = init_forks(args);
 	if (forks == NULL)
 	{
@@ -73,14 +93,7 @@ t_philosopher	*init_philos(t_args *args)
 	}
 	if (!philos)
 		return (NULL);
-	while (i < args->philo_nb)
-	{
-		philos[i].id = i + 1;
-		philos[i].has_eaten = false;
-		philos[i].is_sleeping = false;
-		i++;
-	}
-	philos[args->philo_nb].id = -1;
+	init_struct(philos, args, rules);
 	assign_forks(philos, forks, args);
 	return (philos);
 }

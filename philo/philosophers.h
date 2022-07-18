@@ -6,7 +6,7 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 17:49:45 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/06/29 18:43:04 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/07/18 16:28:12 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@
 # include <stdbool.h>
 # include <limits.h>
 # include <string.h>
+# include <sys/time.h>
+
+typedef struct s_rules
+{
+	bool			program_run;
+	pthread_mutex_t	msg_display;
+}	t_rules;
 
 typedef struct s_args
 {
@@ -39,8 +46,10 @@ typedef struct s_philosopher
 	pthread_mutex_t	*right_fork;
 	bool			has_eaten;
 	bool			is_sleeping;
+	int				times_has_eaten;
 	pthread_t		thread;
-}	t_philosopher;
+	t_rules			*rules;
+}	t_philo;
 
 //utils functions
 int				ft_atoi(const char *str);
@@ -49,11 +58,12 @@ int				error_msg(char *msg);
 t_args			parsing(int ac, char *av[]);
 
 //debug functions
-void			display_philo_infos(t_philosopher *philos);
+void			display_philo_infos(t_philo *philos);
 
 //main functions
-t_philosopher	*init_philos(t_args *args);
+t_philosopher	*init_philos(t_args *args, t_rules *rules);
 void			*philo_loop(void *p);
-void			init_threads(t_args *args, t_philosopher *philos);
+void			init_threads(t_args *args, t_philo *philos);
+void			close_threads(t_args *args, t_philo *philos);
 
 #endif

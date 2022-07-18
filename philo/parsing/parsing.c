@@ -6,12 +6,13 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 17:31:59 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/06/25 11:27:06 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/07/18 17:47:59 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
+//check if args are valid args
 int	check_args(int ac, char *av[])
 {
 	if (has_alpha(av[1]) == true)
@@ -28,6 +29,7 @@ int	check_args(int ac, char *av[])
 	return (0);
 }
 
+//check if after parsing the args are still valid
 int	check_init(t_args *args)
 {
 	if (args->philo_nb == 0 || args->philo_nb > INT_MAX)
@@ -45,6 +47,7 @@ int	check_init(t_args *args)
 	return (0);
 }
 
+//parse the args and assign to t_args struct
 void	args_init(int ac, char *av[], t_args *args)
 {
 	args->philo_nb = ft_atoi(av[1]);
@@ -65,6 +68,7 @@ void	args_init(int ac, char *av[], t_args *args)
 	return ;
 }
 
+//main function for parsing
 t_args	parsing(int ac, char *av[])
 {
 	t_args	args;

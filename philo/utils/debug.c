@@ -6,13 +6,13 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:23:11 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/06/29 18:51:13 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/07/18 16:24:21 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
-void	display_philo_infos(t_philosopher *philos)
+void	display_philo_infos(t_philo *philos)
 {
 	int i = 0;
 
