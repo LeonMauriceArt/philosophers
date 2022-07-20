@@ -6,7 +6,7 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 17:49:45 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/07/18 19:14:38 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/07/20 17:00:14 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <limits.h>
 # include <string.h>
 # include <sys/time.h>
+# include <errno.h>
 
 typedef struct s_rules
 {
@@ -50,6 +51,7 @@ typedef struct s_philosopher
 	int				times_has_eaten;
 	pthread_t		thread;
 	t_rules			*rules;
+	t_args			*args;
 }	t_philo;
 
 //utils functions
@@ -68,6 +70,7 @@ void			init_threads(t_args *args, t_philo *philos);
 void			close_threads(t_args *args, t_philo *philos);
 size_t			get_timestamp(void);
 void			my_usleep(int time);
+void			display_log(t_philo *philo, void (*f)(int, int));
 
 //logs
 void			log_fork(int timeMs, int philoId);

@@ -6,7 +6,7 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 16:21:31 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/07/18 17:50:07 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/07/20 17:00:53 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	init_struct(t_philo *philos, t_args *args, t_rules *rules)
 		philos[i].has_eaten = false;
 		philos[i].is_sleeping = false;
 		philos[i].rules = rules;
+		philos[i].args = args;
 		i++;
 	}
 	philos[args->philo_nb].id = -1;

@@ -6,7 +6,7 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 16:06:57 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/07/18 19:12:09 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/07/20 17:04:51 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	init_threads(t_args *args, t_philo *philos)
 	return ;
 }
 
-// //end philo threads in case of end of program
-// void	close_threads(t_args *args, t_philo *philos)
-// {
+//end philo threads in case of end of program
+void	close_threads(t_args *args, t_philo *philos)
+{
 	
-// }
+}

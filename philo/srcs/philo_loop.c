@@ -6,7 +6,7 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 17:31:51 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/07/18 19:19:34 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/07/20 18:14:22 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ void	*philo_loop(void *p)
 	philo = (t_philo *)p;
 	while (1)
 	{
-		display_log(philo, log_die);
-		my_usleep(500);
+		
 	}
 	return (NULL);
 }
