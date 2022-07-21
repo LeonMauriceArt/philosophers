@@ -6,7 +6,7 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 18:53:12 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/07/21 16:12:42 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/07/21 17:10:34 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	take_forks(t_philo *philo)
 {
-	if (pthread_mutex_lock(philo->left_fork) != EDEADLK)
-		display_log(philo, log_fork);
-	if (pthread_mutex_lock(philo->right_fork) != EDEADLK)
-		display_log(philo, log_fork);
+	pthread_mutex_lock(philo->left_fork);
+	display_log(philo, log_fork);
+	pthread_mutex_lock(philo->right_fork);
+	display_log(philo, log_fork);
 }
 
 void	eat(t_philo *philo)
