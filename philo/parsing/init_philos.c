@@ -6,7 +6,7 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 16:21:31 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/07/20 17:00:53 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/07/21 16:10:11 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 //initiate all forks mutexes
 pthread_mutex_t	*init_forks(t_args *args)
 {
-	int				i;
-	pthread_mutex_t	*mutex_list;
+	size_t				i;
+	pthread_mutex_t		*mutex_list;
 
 	i = 0;
 	mutex_list = malloc(args->philo_nb * sizeof(pthread_mutex_t));
@@ -37,7 +37,7 @@ pthread_mutex_t	*init_forks(t_args *args)
 //assign the forks to each philosopher
 void	assign_forks(t_philo *philos, pthread_mutex_t *forks, t_args *arg)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < arg->philo_nb)
@@ -62,7 +62,7 @@ void	assign_forks(t_philo *philos, pthread_mutex_t *forks, t_args *arg)
 //initiate a philosopher struct
 void	init_struct(t_philo *philos, t_args *args, t_rules *rules)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < args->philo_nb)
@@ -73,6 +73,7 @@ void	init_struct(t_philo *philos, t_args *args, t_rules *rules)
 		philos[i].is_sleeping = false;
 		philos[i].rules = rules;
 		philos[i].args = args;
+		philos[i].is_dead = false;
 		i++;
 	}
 	philos[args->philo_nb].id = -1;

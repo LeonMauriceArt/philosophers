@@ -6,7 +6,7 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 17:49:45 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/07/20 17:00:14 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/07/21 16:11:07 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,19 @@
 typedef struct s_rules
 {
 	bool			program_run;
-	size_t			time_elapsed;
+	size_t			nb_philo_full;
 	pthread_mutex_t	msg_display;
 }	t_rules;
 
 typedef struct s_args
 {
-	int		philo_nb;
-	int		time_to_die;
-	int		time_to_eat;
-	int		time_to_sleep;
-	int		philo_nb_eat;
-	bool	optional_arg;
-	bool	correct_parsing;
+	size_t		philo_nb;
+	size_t		time_to_die;
+	size_t		time_to_eat;
+	size_t		time_to_sleep;
+	size_t		philo_nb_eat;
+	bool		optional_arg;
+	bool		correct_parsing;
 }	t_args;
 
 typedef struct s_philosopher
@@ -48,7 +48,9 @@ typedef struct s_philosopher
 	pthread_mutex_t	*right_fork;
 	bool			has_eaten;
 	bool			is_sleeping;
-	int				times_has_eaten;
+	bool			is_dead;
+	size_t			times_has_eaten;
+	size_t			time_elapsed;
 	pthread_t		thread;
 	t_rules			*rules;
 	t_args			*args;
@@ -71,6 +73,11 @@ void			close_threads(t_args *args, t_philo *philos);
 size_t			get_timestamp(void);
 void			my_usleep(int time);
 void			display_log(t_philo *philo, void (*f)(int, int));
+void			one_dead(t_philo *philos);
+
+//actions
+void			take_forks(t_philo *philo);
+void			eat(t_philo *philo);
 
 //logs
 void			log_fork(int timeMs, int philoId);

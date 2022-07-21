@@ -6,7 +6,7 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 17:31:51 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/07/20 18:14:22 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/07/21 14:09:15 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ void	*philo_loop(void *p)
 	t_philo			*philo;
 
 	philo = (t_philo *)p;
-	while (1)
+	while (1 && philo->is_dead != true)
 	{
-		
+		take_forks(philo);
+		eat(philo);
 	}
 	return (NULL);
 }

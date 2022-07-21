@@ -6,7 +6,7 @@
 #    By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/13 17:51:28 by lmaurin-          #+#    #+#              #
-#    Updated: 2022/07/18 19:11:36 by lmaurin-         ###   ########.fr        #
+#    Updated: 2022/07/20 19:06:33 by lmaurin-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ CCFLAGS	=	-Wall -Wextra -Werror -c
 SRC		=	./utils/ft_atoi.c ./utils/utils.c ./parsing/parsing.c main.c \
 			./srcs/philo_loop.c ./parsing/init_philos.c ./utils/debug.c \
 			./srcs/thread_manager.c ./srcs/time.c ./srcs/logs.c \
+			./srcs/actions.c
 			
 
 all: $(NAME)
@@ -32,6 +33,7 @@ clean:
 	@/bin/rm -f *.o rm *.a
 	@/bin/rm -f ./srcs/*.o rm ./srcs/*.a
 	@/bin/rm -f ./utils/*.o rm ./utils/*.a
+	@/bin/rm -f ./parsing/*.o rm ./parsing/*.a
 
 fclean: clean
 	@/bin/rm -f $(NAME)

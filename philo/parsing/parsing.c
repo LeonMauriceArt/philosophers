@@ -6,7 +6,7 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 17:31:59 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/07/18 17:47:59 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/07/21 16:08:09 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	check_init(t_args *args)
 		return (error_msg("Time to sleep must be greater then 0\n"));
 	if (args->optional_arg == true && args->philo_nb_eat == 0)
 		return (error_msg("Times philosophers eats must be greater then 0\n"));
-	if (args->optional_arg == true && args->philo_nb_eat == -1)
+	if (args->optional_arg == true && !args->philo_nb_eat)
 		return (error_msg("Times philos eats must be inferior of INT_MAX\n"));
 	return (0);
 }
@@ -62,7 +62,7 @@ void	args_init(int ac, char *av[], t_args *args)
 	else
 	{
 		args->optional_arg = false;
-		args->philo_nb_eat = -1;
+		// args->philo_nb_eat = -1;
 	}
 	args->correct_parsing = true;
 	return ;
