@@ -6,7 +6,7 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 18:47:33 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/07/21 17:11:58 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/07/26 13:12:38 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	init_rules(t_rules *rules)
 	return ;
 }
 
-//main function, execute parsing and thread init, and check for program_run var
+//main function
 int	main(int ac, char *av[])
 {
 	t_rules				rules;
@@ -45,7 +45,6 @@ int	main(int ac, char *av[])
 		{
 			printf("-------SIMULATION MUST END-------/n");
 			close_threads(&args, philos);
-			free_philos(philos);
 			return (0);
 		}
 	}
