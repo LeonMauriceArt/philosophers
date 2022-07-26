@@ -6,7 +6,7 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 17:49:45 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/07/26 14:12:06 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/07/26 14:49:58 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,6 @@
 # include <sys/time.h>
 # include <errno.h>
 
-typedef struct s_all
-{
-	bool			program_run;
-	size_t			nb_philo_full;
-	pthread_mutex_t	msg_display;
-}	t_all;
-
 typedef struct s_args
 {
 	size_t		philo_nb;
@@ -44,46 +37,31 @@ typedef struct s_args
 typedef struct s_philosopher
 {
 	int				id;
-	pthread_mutex_t	*left_fork;
-	pthread_mutex_t	*right_fork;
+	pthread_mutex_t	fork;
+	bool			has_fork;
 	bool			has_eaten;
-	bool			is_sleeping;
 	bool			is_dead;
 	size_t			times_has_eaten;
-	size_t			time_elapsed;
+	size_t			time_snap;
 	pthread_t		thread;
-	t_rules			*rules;
-	t_args			*args;
+	struct s_all	*all;
 }	t_philo;
 
-//utils functions
-int				ft_atoi(const char *str);
-bool			has_alpha(char *str);
-int				error_msg(char *msg);
-t_args			parsing(int ac, char *av[]);
+typedef struct s_all
+{
+	bool			program_run;
+	size_t			nb_philo_full;
+	pthread_mutex_t	msg_display;
+	t_philo			*philos;
+	t_args			args;
+}	t_all;
 
-//debug functions
-void			display_philo_infos(t_philo *philos);
+//srcs
+t_args	parsing(int ac, char *av[]);
 
-//main functions
-t_philo			*init_philos(t_args *args, t_rules *rules);
-void			*philo_loop(void *p);
-void			init_threads(t_args *args, t_philo *philos);
-void			close_threads(t_args *args, t_philo *philos);
-size_t			get_timestamp(void);
-void			my_usleep(int time);
-void			display_log(t_philo *philo, void (*f)(int, int));
-void			one_dead(t_philo *philos);
-
-//actions
-void			take_forks(t_philo *philo);
-void			eat(t_philo *philo);
-
-//logs
-void			log_fork(int timeMs, int philoId);
-void			log_eating(int timeMs, int philoId);
-void			log_sleeping(int timeMs, int philoId);
-void			log_thinking(int timeMs, int philoId);
-void			log_die(int timeMs, int philoId);
+//utils
+int		ft_atoi(const char *str);
+bool	has_alpha(char *str);
+int		error_msg(char *msg);
 
 #endif
