@@ -6,7 +6,7 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 17:31:59 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/07/21 16:08:09 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/07/26 14:14:15 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,7 @@ void	args_init(int ac, char *av[], t_args *args)
 		args->philo_nb_eat = ft_atoi(av[5]);
 	}
 	else
-	{
 		args->optional_arg = false;
-		// args->philo_nb_eat = -1;
-	}
 	args->correct_parsing = true;
 	return ;
 }
