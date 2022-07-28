@@ -6,12 +6,11 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 17:31:51 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/07/21 17:09:23 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/07/28 18:04:53 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
-
 
 //main function for each philo thread
 void	*philo_loop(void *p)

@@ -6,7 +6,7 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 16:06:57 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/07/21 16:10:34 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/07/28 18:00:42 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@ void	init_threads(t_args *args, t_philo *philos)
 	while (i < args->philo_nb)
 	{
 		pthread_create(&philos[i].thread, NULL, (void *)philo_loop, &philos[i]);
+		pthread_detach(philos[i].thread);
+		my_usleep(100);
 		i++;
-		my_usleep(200);
 	}
 	return ;
 }

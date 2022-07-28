@@ -6,7 +6,7 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:54:07 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/07/21 17:09:28 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/07/28 15:23:01 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	display_log(t_philo *philo, void (*f)(int, int))
 {
 	pthread_mutex_lock(&philo->rules->msg_display);
-	f(get_timestamp(), philo->id);
+	f(get_timestamp(philo->rules->start_time), philo->id);
 	pthread_mutex_unlock(&philo->rules->msg_display);
 	return ;
 }

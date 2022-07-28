@@ -6,7 +6,7 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 15:53:23 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/07/21 17:11:32 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/07/28 18:07:14 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,29 @@ int	error_msg(char *msg)
 	return (1);
 }
 
-void	my_usleep(int time)
+void	my_usleep(uint64_t amount)
 {
-	int	i;
+	uint64_t		elapsed;
+	struct timeval	start;
 
-	i = 0;
-	while (i < time)
+	elapsed = 0;
+	start = (struct timeval){0};
+	while (elapsed < amount)
 	{
-		usleep(1);
-		i += 1;
+		usleep(50);
+		elapsed = get_timestamp(start);
 	}
+	return ;
 }
 
-size_t	get_timestamp(void)
+uint64_t	get_timestamp(struct timeval start_time)
 {
-	struct timeval	current_time;
+	struct timeval		current_time;
+	uint64_t			time_i;
+	uint64_t			time_j;
 
 	gettimeofday(&current_time, NULL);
-	return (current_time.tv_usec);
+	time_i = current_time.tv_sec * 1000 + current_time.tv_usec / 1000;
+	time_j = start_time.tv_sec * 1000 + start_time.tv_usec / 1000;
+	return (time_i - time_j);
 }

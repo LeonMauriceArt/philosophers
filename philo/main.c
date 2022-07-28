@@ -6,7 +6,7 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 18:47:33 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/07/26 13:12:38 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/07/28 18:04:58 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	main(int ac, char *av[])
 	if (args.correct_parsing == false)
 		return (-1);
 	philos = init_philos(&args, &rules);
+	gettimeofday(&rules.start_time, NULL);
 	init_threads(&args, philos);
 	while (1)
 	{

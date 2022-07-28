@@ -6,7 +6,7 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 18:53:12 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/07/21 17:10:34 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/07/28 18:08:35 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ void	take_forks(t_philo *philo)
 void	eat(t_philo *philo)
 {
 	display_log(philo, log_eating);
-	if ((philo->args->time_to_eat * 1000) > philo->args->time_to_die * 1000)
+	if (philo->args->time_to_eat > philo->args->time_to_die)
 	{
-		my_usleep(philo->args->time_to_die * 1000);
+		usleep(philo->args->time_to_die * 1000);
 		philo->is_dead = true;
 		return ;
 	}
-	my_usleep((philo->args->time_to_eat) * 1000);
+	usleep(philo->args->time_to_eat * 1000);
 	philo->has_eaten = true;
 	philo->times_has_eaten++;
 	if (philo->times_has_eaten == philo->args->philo_nb_eat)
@@ -37,6 +37,6 @@ void	eat(t_philo *philo)
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
 	display_log(philo, log_sleeping);
-	my_usleep((philo->args->time_to_sleep) * 1000);
+	usleep(philo->args->time_to_sleep * 1000);
 	display_log(philo, log_thinking);
 }

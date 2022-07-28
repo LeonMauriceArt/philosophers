@@ -6,7 +6,7 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 17:49:45 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/07/21 16:11:07 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/07/28 16:16:01 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_rules
 	bool			program_run;
 	size_t			nb_philo_full;
 	pthread_mutex_t	msg_display;
+	struct	timeval	start_time;
 }	t_rules;
 
 typedef struct s_args
@@ -70,8 +71,8 @@ t_philo			*init_philos(t_args *args, t_rules *rules);
 void			*philo_loop(void *p);
 void			init_threads(t_args *args, t_philo *philos);
 void			close_threads(t_args *args, t_philo *philos);
-size_t			get_timestamp(void);
-void			my_usleep(int time);
+uint64_t		get_timestamp(struct timeval t);
+void			my_usleep(uint64_t time);
 void			display_log(t_philo *philo, void (*f)(int, int));
 void			one_dead(t_philo *philos);
 

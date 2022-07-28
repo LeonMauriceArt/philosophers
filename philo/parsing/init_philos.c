@@ -6,7 +6,7 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 16:21:31 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/07/21 16:10:11 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/07/28 15:08:26 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	assign_forks(t_philo *philos, pthread_mutex_t *forks, t_args *arg)
 	{
 		if (i == 0)
 		{
-			philos[i].left_fork = &forks[arg->philo_nb];
+			philos[i].left_fork = &forks[arg->philo_nb - 1];
 			philos[i].right_fork = &forks[0];
 		}
 		else
@@ -54,8 +54,6 @@ void	assign_forks(t_philo *philos, pthread_mutex_t *forks, t_args *arg)
 		}
 		i++;
 	}
-	philos[i].left_fork = &forks[arg->philo_nb - 1];
-	philos[i].right_fork = &forks[arg->philo_nb];
 	return ;
 }
 
