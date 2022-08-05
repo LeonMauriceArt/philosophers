@@ -6,7 +6,7 @@
 /*   By: lmaurin <lmaurin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 14:10:15 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/08/06 00:29:43 by lmaurin          ###   ########.fr       */
+/*   Updated: 2022/08/06 00:34:13 by lmaurin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,20 @@ void	check_dead(t_rules *rules)
 	}
 }
 
-// void	init_threads(t_rules *rules, t_philo *philos)
-// {
-// 	size_t	i;
+void	init_threads(t_rules *rules, t_philo *philos)
+{
+	size_t	i;
 
-// 	i = 0;
-// 	while (i < rules->philo_nb)
-// 	{
-// 		pthread_create(&philos[i].thread, NULL, (void *)philo_loop, &philos[i]);
-// 		pthread_detach(philos[i].thread);
-// 		usleep(100);
-// 		i++;
-// 	}
-// 	return ;
-// }
+	i = 0;
+	while (i < rules->philo_nb)
+	{
+		pthread_create(&philos[i].thread, NULL, (void *)philo_thread, &philos[i]);
+		pthread_detach(philos[i].thread);
+		usleep(100);
+		i++;
+	}
+	return ;
+}
 
 int	main(int ac, char *av[])
 {
