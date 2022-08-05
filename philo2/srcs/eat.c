@@ -1,44 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   eat.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmaurin <lmaurin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/15 15:53:23 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/08/06 00:00:36 by lmaurin          ###   ########.fr       */
+/*   Created: 2022/08/06 00:11:05 by lmaurin           #+#    #+#             */
+/*   Updated: 2022/08/06 00:15:55 by lmaurin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
-bool	has_alpha(char *str)
+void    eat(t_philo philo)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] >= 48 && str[i] <= 57)
-			i++;
-		else
-			return (true);
-	}
-	return (false);
+    
 }
 
-int	ft_strlen(char *str)
+void    *philo_thread(void *philosopher)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-int	error_msg(char *msg)
-{
-	write(1, msg, ft_strlen(msg));
-	return (1);
+    
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lmaurin <lmaurin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 17:49:45 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/07/26 14:49:58 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/08/06 00:29:14 by lmaurin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,7 @@
 # include <string.h>
 # include <sys/time.h>
 # include <errno.h>
-
-typedef struct s_args
-{
-	size_t		philo_nb;
-	size_t		time_to_die;
-	size_t		time_to_eat;
-	size_t		time_to_sleep;
-	size_t		philo_nb_eat;
-	bool		optional_arg;
-	bool		correct_parsing;
-}	t_args;
+# include <stdint.h>
 
 typedef struct s_philosopher
 {
@@ -44,20 +34,26 @@ typedef struct s_philosopher
 	size_t			times_has_eaten;
 	size_t			time_snap;
 	pthread_t		thread;
-	struct s_all	*all;
+	struct s_rules	*rules;
 }	t_philo;
 
-typedef struct s_all
+typedef struct s_rules
 {
+	size_t			philo_nb;
+	size_t			time_to_die;
+	size_t			time_to_eat;
+	size_t			time_to_sleep;
+	size_t			philo_nb_eat;
+	bool			optional_arg;
+	bool			correct_parsing;
 	bool			program_run;
 	size_t			nb_philo_full;
 	pthread_mutex_t	msg_display;
 	t_philo			*philos;
-	t_args			args;
-}	t_all;
+}	t_rules;
 
 //srcs
-t_args	parsing(int ac, char *av[]);
+t_rules	parsing(int ac, char *av[]);
 
 //utils
 int		ft_atoi(const char *str);
