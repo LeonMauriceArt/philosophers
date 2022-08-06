@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaurin <lmaurin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: leonard <leonard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 17:49:45 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/08/06 00:33:36 by lmaurin          ###   ########.fr       */
+/*   Updated: 2022/08/06 21:18:53 by leonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,10 @@
 typedef struct s_philosopher
 {
 	int				id;
-	pthread_mutex_t	fork;
-	bool			has_fork;
-	bool			has_eaten;
+	pthread_mutex_t	*lfork;
+	pthread_mutex_t	*rfork;
 	bool			is_dead;
 	size_t			times_has_eaten;
-	size_t			time_snap;
 	pthread_t		thread;
 	struct s_rules	*rules;
 }	t_philo;
@@ -54,7 +52,8 @@ typedef struct s_rules
 
 //srcs
 t_rules	parsing(int ac, char *av[]);
-void    *philo_thread(void *philosopher);
+int		init_philos(t_rules *rules);
+void	*philo_thread(void *philosopher);
 
 //utils
 int		ft_atoi(const char *str);

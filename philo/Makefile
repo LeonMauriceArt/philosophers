@@ -3,18 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: leonard <leonard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/13 17:51:28 by lmaurin-          #+#    #+#              #
-#    Updated: 2022/07/26 13:13:23 by lmaurin-         ###   ########.fr        #
+#    Updated: 2022/08/06 17:17:09 by leonard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	philosophers
 HEADER	=	philosophers.h
 OBJ		=	$(SRC:.c=.o)
-CC		=	gcc
-CCFLAGS	=	-Wall -Wextra -Werror -c
+CC		=	gcc -pthread
+CCFLAGS	=	-Wall -Wextra -Werror -c 
 SRC		=	./utils/ft_atoi.c ./utils/utils.c ./parsing/parsing.c main.c \
 			./srcs/philo_loop.c ./parsing/init_philos.c \
 			./srcs/thread_manager.c ./srcs/logs.c \

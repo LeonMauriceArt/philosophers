@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: leonard <leonard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 18:47:33 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/07/28 18:04:58 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/08/06 18:09:33 by leonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+void	check_dead(t_philo *philos, t_args args)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < args.philo_nb)
+	{
+		if (philos[i].is_dead == true)
+		{
+			philos[i].rules->program_run = false;
+			return ;
+		}
+		else
+			i++;
+	}
+	return ;
+}
 
 //initiate rules struct
 void	init_rules(t_rules *rules)
@@ -39,8 +57,8 @@ int	main(int ac, char *av[])
 	init_threads(&args, philos);
 	while (1)
 	{
-		one_dead(philos);
-		if (rules.nb_philo_full == args.philo_nb_eat)
+		check_dead(philos);
+		if (rules.nb_philo_full == args.philo_nb)
 			rules.program_run = false;
 		if (rules.program_run == false)
 		{

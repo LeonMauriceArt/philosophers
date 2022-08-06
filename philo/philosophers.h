@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: leonard <leonard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 17:49:45 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/07/28 16:16:01 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/08/06 18:08:27 by leonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <string.h>
 # include <sys/time.h>
 # include <errno.h>
+# include <stdint.h>
 
 typedef struct s_rules
 {
@@ -74,7 +75,6 @@ void			close_threads(t_args *args, t_philo *philos);
 uint64_t		get_timestamp(struct timeval t);
 void			my_usleep(uint64_t time);
 void			display_log(t_philo *philo, void (*f)(int, int));
-void			one_dead(t_philo *philos);
 
 //actions
 void			take_forks(t_philo *philo);

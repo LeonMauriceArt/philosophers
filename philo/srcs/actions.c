@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: leonard <leonard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 18:53:12 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/07/28 18:08:35 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/08/06 18:06:11 by leonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	eat(t_philo *philo)
 	{
 		usleep(philo->args->time_to_die * 1000);
 		philo->is_dead = true;
+		display_log(philo, log_die);
 		return ;
 	}
 	usleep(philo->args->time_to_eat * 1000);

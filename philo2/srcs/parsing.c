@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaurin <lmaurin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: leonard <leonard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 17:31:59 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/08/06 00:30:17 by lmaurin          ###   ########.fr       */
+/*   Updated: 2022/08/06 20:04:59 by leonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	args_init(int ac, char *av[], t_rules *rules)
 //main function for parsing
 t_rules	parsing(int ac, char *av[])
 {
-	t_rules rules;
+	t_rules	rules;
 
 	if (check_args(ac, av) == 1)
 	{
