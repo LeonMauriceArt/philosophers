@@ -6,7 +6,7 @@
 #    By: leonard <leonard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/13 17:51:28 by lmaurin-          #+#    #+#              #
-#    Updated: 2022/08/06 21:23:04 by leonard          ###   ########.fr        #
+#    Updated: 2022/08/07 18:38:10 by leonard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ OBJ		=	$(SRC:.c=.o)
 CC		=	gcc -pthread
 CCFLAGS	=	-Wall -Wextra -Werror -c
 SRC		=	./main.c ./srcs/parsing.c ./utils/utils.c ./utils/ft_atoi.c \
-			./srcs/init_philos.c ./srcs/eat.c
+			./srcs/init_philos.c ./srcs/philo.c
 			
 
 all: $(NAME)

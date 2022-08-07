@@ -6,7 +6,7 @@
 /*   By: leonard <leonard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 20:00:36 by leonard           #+#    #+#             */
-/*   Updated: 2022/08/06 21:45:12 by leonard          ###   ########.fr       */
+/*   Updated: 2022/08/07 18:47:24 by leonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,12 @@ t_philo	*create_philos(t_rules *rules)
 	{
 		philos[i].rules = rules;
 		philos[i].id = i + 1;
-		philos[i].is_dead = false;
 		philos[i].times_has_eaten = 0;
 		i++;
 	}
 	rules->philos = philos;
-	rules->nb_philo_full = 0;
 	rules->program_run = true;
+	pthread_mutex_init(&rules->msg_display, NULL);
 	return (philos);
 }
 

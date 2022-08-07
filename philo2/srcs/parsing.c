@@ -6,7 +6,7 @@
 /*   By: leonard <leonard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 17:31:59 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/08/06 20:04:59 by leonard          ###   ########.fr       */
+/*   Updated: 2022/08/07 18:47:13 by leonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,10 @@ void	args_init(int ac, char *av[], t_rules *rules)
 		rules->philo_nb_eat = ft_atoi(av[5]);
 	}
 	else
+	{
 		rules->optional_arg = false;
+		rules->philo_nb_eat = -1;
+	}
 	rules->correct_parsing = true;
 	return ;
 }
@@ -76,7 +79,7 @@ t_rules	parsing(int ac, char *av[])
 		return (rules);
 	}
 	args_init(ac, av, &rules);
-	if (check_init(&rules) == 1)
+	if (check_init(&rules))
 		rules.correct_parsing = false;
 	return (rules);
 }
