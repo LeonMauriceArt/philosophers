@@ -6,7 +6,7 @@
 /*   By: leonard <leonard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 00:11:05 by lmaurin           #+#    #+#             */
-/*   Updated: 2022/08/07 20:25:03 by leonard          ###   ########.fr       */
+/*   Updated: 2022/08/09 20:12:07 by leonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@ void	philo_log(t_philo *philo, char *msg)
 		printf("%ld %d %s\n", get_time() - philo->rules->start_time, \
 					philo->id, msg);
 	pthread_mutex_unlock(&philo->rules->msg_display);
+}
+
+void	destroy_forks(t_philo *philo)
+{
+	pthread_mutex_unlock(philo->lfork);
+	pthread_mutex_unlock(philo->rfork);
+	pthread_mutex_destroy(philo->lfork);
+	pthread_mutex_destroy(philo->rfork);
 }
 
 void	*eat_loop(void *philo)
@@ -43,5 +51,6 @@ void	*eat_loop(void *philo)
 		philo_log(p, "is sleeping");
 		my_usleep(p->rules->time_to_sleep, p->rules);
 	}
+	destroy_forks(p);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: leonard <leonard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 17:49:45 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/08/07 20:30:54 by leonard          ###   ########.fr       */
+/*   Updated: 2022/08/09 20:18:12 by leonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ typedef struct s_rules
 	bool			correct_parsing;
 	bool			program_run;
 	pthread_mutex_t	msg_display;
-	pthread_t		check_dead;
 	t_philo			*philos;
 }	t_rules;
 
