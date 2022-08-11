@@ -6,40 +6,36 @@
 /*   By: leonard <leonard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 14:10:15 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/08/09 20:22:25 by leonard          ###   ########.fr       */
+/*   Updated: 2022/08/11 17:09:29 by leonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	check_dead(void *p)
+void	check_dead(t_rules *r)
 {
-	t_philo	*philos;
 	size_t	i;
 	size_t	num_philo_full;
 
-	philos = p;
-	while (philos->rules->program_run)
+	while (r->program_run)
 	{
 		num_philo_full = 0;
 		i = -1;
-		while (++i < philos->rules->philo_nb)
+		while (++i < r->philo_nb)
 		{
-			if (get_time() - philos[i].time_eat > philos->rules->time_to_die)
+			if (get_time() - r->philos[i].time_eat > r->time_to_die)
 			{
-				dprintf(2, "COUSCOUS\n");
-				philo_log(&philos[i], "died");
-				philos->rules->program_run = false;
-				break ;
+				philo_log(&r->philos[i], "died");
+				r->program_run = false;
+				return ;
 			}
-			if (philos->rules->philo_nb_eat && \
-				philos[i].times_has_eaten >= philos->rules->philo_nb_eat)
+			if (r->philo_nb_eat && r->philos[i].times_has_eaten \
+					>= r->philo_nb_eat)
 				num_philo_full++;
 		}
-		if (num_philo_full == philos->rules->philo_nb)
-			philos->rules->program_run = false;
+		if (num_philo_full == r->philo_nb)
+			r->program_run = false;
 	}
-	return (0);
 }
 
 void	init_threads(t_rules *rules, t_philo *p)
@@ -72,7 +68,7 @@ int	main(int ac, char *av[])
 		return (1);
 	pthread_mutex_init(&rules.msg_display, NULL);
 	init_threads(&rules, rules.philos);
-	check_dead(&rules.philos);
+	check_dead(&rules);
 	i = -1;
 	while (++i < rules.philo_nb)
 		pthread_join(rules.philos[i].thread, NULL);
