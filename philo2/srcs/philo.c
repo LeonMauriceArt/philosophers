@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: leonard <leonard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 00:11:05 by lmaurin           #+#    #+#             */
-/*   Updated: 2022/08/11 18:25:20 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/08/11 19:43:10 by leonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,22 @@ void	philo_log(t_philo *philo, char *msg)
 {
 	pthread_mutex_lock(&philo->rules->msg_display);
 	if (philo->rules->program_run)
-		printf("%llu %d %s\n", get_time() - philo->rules->start_time, \
+		printf("%lu %d %s\n", get_time() - philo->rules->start_time, \
 					philo->id, msg);
 	pthread_mutex_unlock(&philo->rules->msg_display);
+}
+
+void	take_forks(t_philo *p)
+{
+	pthread_mutex_lock(p->lfork);
+	philo_log(p, "has taken a fork");
+	pthread_mutex_lock(p->rfork);
+	philo_log(p, "has taken a fork");
+	philo_log(p, "is eating");
+	my_usleep(p->rules->time_to_eat, p->rules);
+	p->time_eat = get_time();
+	pthread_mutex_unlock(p->lfork);
+	pthread_mutex_unlock(p->rfork);
 }
 
 void	destroy_mutex(t_philo *philo)
@@ -38,17 +51,7 @@ void	*eat_loop(void *philo)
 	while (p->rules->program_run)
 	{
 		philo_log(p, "is thinking");
-		pthread_mutex_lock(p->lfork);
-		philo_log(p, "has taken a fork");
-		pthread_mutex_lock(p->rfork);
-		philo_log(p, "has taken a fork");
-		philo_log(p, "is eating");
-		my_usleep(p->rules->time_to_eat, p->rules);
-		pthread_mutex_lock(&p->m_time_eat);
-		p->time_eat = get_time();
-		pthread_mutex_unlock(&p->m_time_eat);
-		pthread_mutex_unlock(p->lfork);
-		pthread_mutex_unlock(p->rfork);
+		take_forks(philo);
 		if (p->rules->program_run)
 			p->times_has_eaten++;
 		philo_log(p, "is sleeping");
