@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_philos.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leonard <leonard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 20:00:36 by leonard           #+#    #+#             */
-/*   Updated: 2022/08/09 20:20:25 by leonard          ###   ########.fr       */
+/*   Updated: 2022/08/11 18:25:26 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_philo	*create_philos(t_rules *rules)
 		philos[i].rules = rules;
 		philos[i].id = i + 1;
 		philos[i].times_has_eaten = 0;
+		pthread_mutex_init(&philos[i].m_time_eat, NULL);
 		i++;
 	}
 	rules->philos = philos;
@@ -65,6 +66,7 @@ int	init_philos(t_rules *rules)
 	forks = malloc (sizeof(pthread_mutex_t) * rules->philo_nb);
 	if (!forks)
 		return (1);
+	rules->f = forks;
 	while (i < rules->philo_nb)
 	{
 		if (pthread_mutex_init(&forks[i], NULL) != 0)

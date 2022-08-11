@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leonard <leonard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 17:49:45 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/08/09 20:18:12 by leonard          ###   ########.fr       */
+/*   Updated: 2022/08/11 18:26:51 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_philosopher
 	int				id;
 	pthread_mutex_t	*lfork;
 	pthread_mutex_t	*rfork;
+	pthread_mutex_t	m_time_eat;
 	uint64_t		time_eat;
 	size_t			times_has_eaten;
 	pthread_t		thread;
@@ -48,6 +49,7 @@ typedef struct s_rules
 	bool			program_run;
 	pthread_mutex_t	msg_display;
 	t_philo			*philos;
+	pthread_mutex_t	*f;
 }	t_rules;
 
 //srcs

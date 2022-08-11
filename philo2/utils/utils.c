@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leonard <leonard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 15:53:23 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/08/07 18:29:33 by leonard          ###   ########.fr       */
+/*   Updated: 2022/08/11 18:17:13 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ bool	has_alpha(char *str)
 	int	i;
 
 	i = 0;
+	if (str[i] == '-')
+		i++;
 	while (str[i])
 	{
 		if (str[i] >= 48 && str[i] <= 57)

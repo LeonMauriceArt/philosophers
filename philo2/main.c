@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leonard <leonard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 14:10:15 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/08/11 17:09:29 by leonard          ###   ########.fr       */
+/*   Updated: 2022/08/11 18:21:49 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	check_dead(t_rules *r)
 		i = -1;
 		while (++i < r->philo_nb)
 		{
+			pthread_mutex_lock(&r->philos[i].m_time_eat);
 			if (get_time() - r->philos[i].time_eat > r->time_to_die)
 			{
 				philo_log(&r->philos[i], "died");
@@ -30,8 +31,12 @@ void	check_dead(t_rules *r)
 				return ;
 			}
 			if (r->philo_nb_eat && r->philos[i].times_has_eaten \
-					>= r->philo_nb_eat)
+					== r->philo_nb_eat)
+			{
 				num_philo_full++;
+				printf("One philo is full\n");
+			}
+			pthread_mutex_unlock(&r->philos[i].m_time_eat);
 		}
 		if (num_philo_full == r->philo_nb)
 			r->program_run = false;
@@ -69,8 +74,10 @@ int	main(int ac, char *av[])
 	pthread_mutex_init(&rules.msg_display, NULL);
 	init_threads(&rules, rules.philos);
 	check_dead(&rules);
+	free (rules.philos);
+	free (rules.f);
 	i = -1;
-	while (++i < rules.philo_nb)
+	while (++i < rules.philo_nb && rules.philo_nb != 1)
 		pthread_join(rules.philos[i].thread, NULL);
 	return (0);
 }
