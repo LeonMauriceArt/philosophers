@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_philos.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: leonard <leonard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 20:00:36 by leonard           #+#    #+#             */
-/*   Updated: 2022/08/11 18:25:26 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/08/13 16:15:14 by leonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ t_philo	*create_philos(t_rules *rules)
 		philos[i].rules = rules;
 		philos[i].id = i + 1;
 		philos[i].times_has_eaten = 0;
-		pthread_mutex_init(&philos[i].m_time_eat, NULL);
 		i++;
 	}
+	pthread_mutex_init(&rules->mutex_time, NULL);
+	pthread_mutex_init(&rules->mutex_program, NULL);
+	pthread_mutex_init(&rules->mutex_time_eat, NULL);
 	rules->philos = philos;
 	rules->program_run = true;
 	return (philos);

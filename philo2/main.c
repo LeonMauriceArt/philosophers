@@ -6,7 +6,7 @@
 /*   By: leonard <leonard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 14:10:15 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/08/11 19:35:22 by leonard          ###   ########.fr       */
+/*   Updated: 2022/08/13 17:10:22 by leonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,17 @@ void	check_dead(t_rules *r)
 		i = -1;
 		while (++i < r->philo_nb)
 		{
-			if (get_time() - r->philos[i].time_eat > r->time_to_die)
+			if (!mutex_check_time(&r->philos[i], 'r'))
 			{
 				philo_log(&r->philos[i], "died");
-				r->program_run = false;
+				mutex_check_program(r, 'w');
 				return ;
 			}
-			if (r->philo_nb_eat && r->philos[i].times_has_eaten \
-					== r->philo_nb_eat)
+			if (r->philo_nb_eat && !mutex_check_time_eat(&r->philos[i], 'r'))
 				num_philo_full++;
 		}
 		if (num_philo_full == r->philo_nb)
-			r->program_run = false;
+			mutex_check_program(r, 'w');
 	}
 }
 
@@ -54,6 +53,13 @@ void	init_threads(t_rules *rules, t_philo *p)
 	}
 }
 
+void	destroy_r_mutex(t_rules *rules)
+{
+	pthread_mutex_destroy(&rules->mutex_program);
+	pthread_mutex_destroy(&rules->mutex_time);
+	pthread_mutex_destroy(&rules->mutex_time_eat);
+}
+
 int	main(int ac, char *av[])
 {
 	size_t	i;
@@ -71,8 +77,12 @@ int	main(int ac, char *av[])
 	check_dead(&rules);
 	i = -1;
 	while (++i < rules.philo_nb && rules.philo_nb != 1)
+	{
+		destroy_fork(&rules.philos[i]);
 		pthread_join(rules.philos[i].thread, NULL);
+	}
 	free (rules.philos);
 	free (rules.f);
+	destroy_r_mutex(&rules);
 	return (0);
 }

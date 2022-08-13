@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: leonard <leonard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 17:49:45 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/08/11 18:26:51 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/08/13 17:09:52 by leonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,12 @@
 typedef struct s_philosopher
 {
 	int				id;
-	pthread_mutex_t	*lfork;
-	pthread_mutex_t	*rfork;
-	pthread_mutex_t	m_time_eat;
 	uint64_t		time_eat;
 	size_t			times_has_eaten;
 	pthread_t		thread;
 	struct s_rules	*rules;
+	pthread_mutex_t	*lfork;
+	pthread_mutex_t	*rfork;
 }	t_philo;
 
 typedef struct s_rules
@@ -50,6 +49,9 @@ typedef struct s_rules
 	pthread_mutex_t	msg_display;
 	t_philo			*philos;
 	pthread_mutex_t	*f;
+	pthread_mutex_t	mutex_time;
+	pthread_mutex_t	mutex_program;
+	pthread_mutex_t	mutex_time_eat;
 }	t_rules;
 
 //srcs
@@ -57,8 +59,12 @@ t_rules		parsing(int ac, char *av[]);
 int			init_philos(t_rules *rules);
 void		*eat_loop(void *philo);	
 void		philo_log(t_philo *philo, char *msg);
+void		destroy_fork(t_philo *philo);
 
 //utils
+int			mutex_check_time(t_philo *p, char c);
+int			mutex_check_time_eat(t_philo *p, char c);
+int			mutex_check_program(t_rules *rules, char c);
 int			ft_atoi(const char *str);
 bool		has_alpha(char *str);
 int			error_msg(char *msg);

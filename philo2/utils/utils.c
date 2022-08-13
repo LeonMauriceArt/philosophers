@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: leonard <leonard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 15:53:23 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/08/11 18:17:13 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/08/13 16:08:52 by leonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	my_usleep(uint64_t amount, t_rules *rules)
 	uint64_t	t;
 
 	t = get_time();
-	while (rules->program_run)
+	while (!mutex_check_program(rules, 'r'))
 	{
 		if (get_time() - t >= amount)
 			break ;
