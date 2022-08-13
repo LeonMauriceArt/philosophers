@@ -6,7 +6,7 @@
 /*   By: leonard <leonard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 14:10:15 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/08/13 17:10:22 by leonard          ###   ########.fr       */
+/*   Updated: 2022/08/13 17:22:04 by leonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,11 @@ int	main(int ac, char *av[])
 	i = -1;
 	while (++i < rules.philo_nb && rules.philo_nb != 1)
 	{
-		destroy_fork(&rules.philos[i]);
 		pthread_join(rules.philos[i].thread, NULL);
 	}
+	i = -1;
+	while (++i < rules.philo_nb && rules.philo_nb != 1)
+		destroy_fork(&rules.philos[i]);
 	free (rules.philos);
 	free (rules.f);
 	destroy_r_mutex(&rules);
