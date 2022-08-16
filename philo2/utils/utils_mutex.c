@@ -6,7 +6,7 @@
 /*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 14:17:13 by leonard           #+#    #+#             */
-/*   Updated: 2022/08/13 19:19:30 by lmaurin-         ###   ########.fr       */
+/*   Updated: 2022/08/16 11:44:57 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	mutex_check_program(t_rules *rules, char c)
 
 int	mutex_check_time_eat(t_philo *p, char c)
 {
-	if (c == 'w')
+	if (c == 'w' && p->times_has_eaten >= 0)
 	{
 		pthread_mutex_lock(&p->rules->mutex_time_eat);
 		p->times_has_eaten++;
@@ -49,6 +49,7 @@ int	mutex_check_time_eat(t_philo *p, char c)
 		pthread_mutex_lock(&p->rules->mutex_time_eat);
 		if (p->times_has_eaten == p->rules->philo_nb_eat)
 		{
+			p->times_has_eaten = -1;
 			pthread_mutex_unlock(&p->rules->mutex_time_eat);
 			return (0);
 		}

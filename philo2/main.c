@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: leonard <leonard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lmaurin- <lmaurin-@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 14:10:15 by lmaurin-          #+#    #+#             */
-/*   Updated: 2022/08/13 17:22:04 by leonard          ###   ########.fr       */
+/*   Updated: 2022/08/16 11:44:35 by lmaurin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	check_dead(t_rules *r)
 	size_t	i;
 	size_t	num_philo_full;
 
+	num_philo_full = 0;
 	while (r->program_run)
 	{
-		num_philo_full = 0;
 		i = -1;
 		while (++i < r->philo_nb)
 		{
@@ -29,7 +29,8 @@ void	check_dead(t_rules *r)
 				mutex_check_program(r, 'w');
 				return ;
 			}
-			if (r->philo_nb_eat && !mutex_check_time_eat(&r->philos[i], 'r'))
+			if (r->philo_nb_eat && !mutex_check_time_eat(&r->philos[i], 'r') \
+					&& r->philos[i].times_has_eaten >= 0)
 				num_philo_full++;
 		}
 		if (num_philo_full == r->philo_nb)
